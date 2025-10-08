@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Biblioteca — Suspense</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Livros da categoria Suspense" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div>📚 Biblioteca — Suspense</div>
+    <div class="nav-actions">
+      <form method="get" class="search-form" action="">
+        <input type="text" name="pesquisa" placeholder="Pesquisar na categoria Suspense..." aria-label="Pesquisar livros de Suspense" />
+        <button type="submit" aria-label="Buscar">🔍</button>
+      </form>
+      <a href="index.html" class="logout">Voltar</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Categorias</h3>
+      <ul>
+        <li><a href="suspense.html" class="active">Suspense</a></li>
+        <li><a href="terror.html">Terror</a></li>
+        <li><a href="romance.html">Romance</a></li>
+        <li><a href="religiosidade.html">Religiosidade</a></li>
+      </ul>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="content">
+      <h2>Livros de Suspense</h2>
+      <div id="livros-container" class="cards-grid"></div>
+      <div class="no-results" style="display:none;">Nenhum livro encontrado nesta categoria.</div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>Biblioteca inspirada no Projeto Gutenberg e Biblioteca Mundial.</p>
+      <p>Desenvolvido por Renato de Souza, Thalia Vieira, Leonardo Cruz Ribeiro, Lucas Trecziak e Paulo Dabwya.</p>
+    </div>
+  </footer>
+
+  <script>
+    const CATEGORY = 'suspense';
+    const JSON_URL = 'books.json';
+    const PLACEHOLDER = '/img/placeholder-cover.jpg';
+
+    function encodePath(path) {
+      return path.split('/').map(s => encodeURIComponent(s)).join('/');
+    }
+
+    const CONTAINER = document.getElementById('livros-container');
+    const NO_RESULTS = document.querySelector('.no-results');
+    const SEARCH_INPUT = document.querySelector('input[name="pesquisa"]');
+
+    let livrosDaCategoria = [];
+    let termoBusca = '';
+
+    function criarCard(livro) {
+      const el = document.createElement('section');
+      el.className = 'card';
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('aria-label', `Ver detalhes de ${livro.titulo}`);
+
+      const capaUrl = encodePath(livro.capa);
+      const arquivoUrl = encodePath(livro.arquivo);
+
+      el.innerHTML = `
+        <div class="face front">
+          <img src="${capaUrl}" alt="Capa do livro ${livro.titulo}">
+          <h3>${livro.titulo}</h3>
+          <p class="autor">${livro.autor || ''}</p>
+        </div>
+        <div class="face back">
+          <p class="resumo">${livro.resumo || ''}</p>
+          <a href="${arquivoUrl}" target="_blank" rel="noopener" class="btn-add">Abrir Livro 📖</a>
+        </div>
+      `;
+
+      const img = el.querySelector('img');
+      img.addEventListener('error', () => { img.src = PLACEHOLDER; });
+      return el;
+    }
+
+    function renderizar() {
+      CONTAINER.innerHTML = '';
+      const filtrados = livrosDaCategoria.filter(l => {
+        if (!termoBusca) return true;
+        const t = termoBusca.toLowerCase();
+        return (
+          (l.titulo || '').toLowerCase().includes(t) ||
+          (l.autor || '').toLowerCase().includes(t) ||
+          (l.resumo || '').toLowerCase().includes(t)
+        );
+      });
+
+      if (filtrados.length === 0) {
+        NO_RESULTS.style.display = 'block';
+        return;
+      }
+      NO_RESULTS.style.display = 'none';
+      filtrados.forEach(l => CONTAINER.appendChild(criarCard(l)));
+    }
+
+    async function carregarLivros() {
+      try {
+        const res = await fetch(JSON_URL, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Falha ao carregar books.json');
+        const todos = await res.json();
+        const arr = Array.isArray(todos) ? todos : Object.values(todos).flat();
+        livrosDaCategoria = arr.filter(l => (l.categoria || '').toLowerCase() === CATEGORY);
+        renderizar();
+      } catch (e) {
+        console.error(e);
+        NO_RESULTS.textContent = 'Erro ao carregar os livros.';
+        NO_RESULTS.style.display = 'block';
+      }
+    }
+
+    CONTAINER.addEventListener('click', (e) => {
+      const card = e.target.closest('.card');
+      if (!card) return;
+      e.stopPropagation();
+      card.classList.toggle('flipped');
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.card.flipped').forEach(c => c.classList.remove('flipped'));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.card.flipped').forEach(c => c.classList.remove('flipped'));
+      }
+    });
+
+    if (SEARCH_INPUT) {
+      const params = new URLSearchParams(location.search);
+      termoBusca = (params.get('pesquisa') || '').trim();
+      if (termoBusca) SEARCH_INPUT.value = termoBusca;
+
+      SEARCH_INPUT.addEventListener('input', () => {
+        termoBusca = SEARCH_INPUT.value.trim();
+        renderizar();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', carregarLivros);
+  </script>
+
+</body>
+</html>
