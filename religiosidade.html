@@ -3,26 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Biblioteca — Religiosidade</title>
+  <title>Biblioteca — Terror</title>
   <link rel="stylesheet" href="styles.css" />
-  <meta name="description" content="Livros da categoria Religiosidade" />
+  <link rel="stylesheet" href="normalize.css">
+  <script src="script.js" defer></script>
+  <meta name="description" content="Livros da categoria Romance" />
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div>📚 Biblioteca — Religiosidade</div>
-    <div class="nav-actions">
-      <form method="get" class="search-form" action="">
-        <input type="text" name="pesquisa" placeholder="Pesquisar na categoria Religiosidade..." aria-label="Pesquisar livros de Religiosidade" />
-        <button type="submit" aria-label="Buscar">🔍</button>
-      </form>
-      <a href="index.html" class="logout">Voltar</a>
+<nav class="navbar">
+  <div class="nav-brand">📚 Biblioteca</div>
+
+  <!-- Botão hamburger para mobile -->
+  <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+
+  <div class="nav-actions">
+    <form class="search-form">
+      <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar livros">
+      <button type="submit" aria-label="Buscar">🔍</button>
+    </form>
+    <a href="index.html" class="logout">Voltar</a>
+
+    <!-- Menu de categorias -->
+    <div class="mobile-categorias">
+      <a href="suspense.html">Suspense</a>
+      <a href="terror.html">Terror</a>
+      <a href="romance.html">Romance</a>
+      <a href="religiosidade.html" class="active">Religiosidade</a>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <div class="container">
-    <!-- Sidebar -->
+    <!-- Sidebar opcional (pode ocultar no mobile pelo CSS) -->
     <aside class="sidebar">
       <h3>Categorias</h3>
       <ul>
@@ -33,127 +47,114 @@
       </ul>
     </aside>
 
-    <!-- Conteúdo principal -->
-    <main class="content">
-      <h2>Livros de Religiosidade</h2>
-      <div id="livros-container" class="cards-grid"></div>
-      <div class="no-results" style="display:none;">Nenhum livro encontrado nesta categoria.</div>
-    </main>
+  <main class="content">
+  <h2>Livros de Religiosidade</h2>
+  <div class="cards-grid">
+
+  <section class="card" tabindex="0">
+  <div class="face front">
+    <img src="uploads/capas/religiosidade/confessions.jpg" alt="Capa do livro Confissões">
+    <h3>Confissões</h3>
+    <p class="autor">Santo Agostinho</p>
+    <p class="hint">Religião</p>
   </div>
+  <div class="face back">
+    <p class="resumo">A obra-prima de Santo Agostinho, onde ele narra sua jornada espiritual e busca por Deus.</p>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <p>Biblioteca inspirada no Projeto Gutenberg e Biblioteca Mundial.</p>
-      <p>Desenvolvido por Renato de Souza, Thalia Vieira, Leonardo Cruz Ribeiro, Lucas Trecziak e Paulo Dabwya.</p>
-    </div>
-  </footer>
+<a href="uploads/livros/religiosidade/confessions.epub" target="_blank" class="btn-add">Abrir Livro 📖</a>
+  </div>
+</section>
 
-  <script>
-    const CATEGORY = 'religiosidade';
-    const JSON_URL = 'books.json';
-    const PLACEHOLDER = '/img/placeholder-cover.jpg';
+<section class="card" tabindex="0">
+  <div class="face front">
+    <img src="uploads/capas/religiosidade/the_city_of_god_vol1.jpg" alt="Capa do livro A Cidade de Deus - Volume 1">
+   <h3>A Cidade de Deus - Volume 1</h3>
+<p class="autor">Santo Agostinho</p>
+    <p class="hint">Religião</p>
+  </div>
+  <div class="face back">
+<p class="resumo">Uma análise profunda da sociedade e da política de sua época, defendendo a cidade de Deus contra as críticas de seus contemporâneos.</p>
 
-    function encodePath(path) {
-      return path.split('/').map(s => encodeURIComponent(s)).join('/');
-    }
+    <a href="uploads/livros/religiosidade/the_city_of_god_vol1.epub" target="_blank" class="btn-add">Abrir Livro 📖</a>
+  </div>
+</section>
 
-    const CONTAINER = document.getElementById('livros-container');
-    const NO_RESULTS = document.querySelector('.no-results');
-    const SEARCH_INPUT = document.querySelector('input[name="pesquisa"]');
+    <!-- Card 3 -->
+<section class="card" tabindex="0">
+  <div class="face front">
+    <img src="uploads/capas/religiosidade/the_city_of_god_vol2.jpg" alt="Capa do livro A Cidade de Deus - Volume 2">
+    <h3>A Cidade de Deus - Volume 2</h3>
+    <p class="autor">Santo Agostinho</p>
+    <p class="hint">Religião</p>
+  </div>
+  <div class="face back">
+ <p class="resumo">Uma continuação da análise de Santo Agostinho sobre a sociedade e a política, aprofundando-se na defesa da cidade de Deus.</p>
 
-    let livrosDaCategoria = [];
-    let termoBusca = '';
+    <a href="uploads/livros/religiosidade/the_city_of_god_vol2.epub" target="_blank" class="btn-add">Abrir Livro 📖</a>
+  </div>
+</section>
 
-    function criarCard(livro) {
-      const el = document.createElement('section');
-      el.className = 'card';
-      el.setAttribute('tabindex', '0');
-      el.setAttribute('aria-label', `Ver detalhes de ${livro.titulo}`);
+<!-- Card 4 -->
+<section class="card" tabindex="0">
+  <div class="face front">
+    <img src="uploads/capas/religiosidade/the_imitation_of_christ.jpg" alt="Capa do livro A Imitação de Cristo">
+    <h3>A Imitação de Cristo</h3>
+    <p class="autor">Tomás de Kempis</p>
+    <p class="hint">Religião</p>
+  </div>
+  <div class="face back">
+    <p class="resumo">Um dos livros mais influentes da espiritualidade cristã, oferecendo reflexões sobre a vida de Cristo e a prática da fé.</p>
+    <a href="uploads/livros/religiosidade/the_imitation_of_christ.epub" target="_blank" class="btn-add">Abrir Livro 📖</a>
+  </div>
+</section>
 
-      const capaUrl = encodePath(livro.capa);
-      const arquivoUrl = encodePath(livro.arquivo);
+<!-- Card 5 -->
+<section class="card" tabindex="0">
+  <div class="face front">
+    <img src="uploads/capas/religiosidade/the_pilgrim's_progress.jpg" alt="Capa do livro A Peregrinação do Cristão">
+    <h3>A Peregrinação do Cristão</h3>
+    <p class="autor">John Bunyan</p>
+    <p class="hint">Religião</p>
+  </div>
+  <div class="face back">
+    <p class="resumo">Uma alegoria da jornada espiritual de um cristão, abordando temas de fé, dúvida e redenção.</p>
+    <a href="uploads/livros/religiosidade/the_pilgrim's_progress.epub" target="_blank" class="btn-add">Abrir Livro 📖</a>
+  </div>
+</section>
 
-      el.innerHTML = `
-        <div class="face front">
-          <img src="${capaUrl}" alt="Capa do livro ${livro.titulo}">
-          <h3>${livro.titulo}</h3>
-          <p class="autor">${livro.autor || ''}</p>
-        </div>
-        <div class="face back">
-          <p class="resumo">${livro.resumo || ''}</p>
-          <a href="${arquivoUrl}" target="_blank" rel="noopener" class="btn-add">Abrir Livro 📖</a>
-        </div>
-      `;
 
-      const img = el.querySelector('img');
-      img.addEventListener('error', () => { img.src = PLACEHOLDER; });
-      return el;
-    }
 
-    function renderizar() {
-      CONTAINER.innerHTML = '';
-      const filtrados = livrosDaCategoria.filter(l => {
-        if (!termoBusca) return true;
-        const t = termoBusca.toLowerCase();
-        return (
-          (l.titulo || '').toLowerCase().includes(t) ||
-          (l.autor || '').toLowerCase().includes(t) ||
-          (l.resumo || '').toLowerCase().includes(t)
-        );
-      });
 
-      if (filtrados.length === 0) {
-        NO_RESULTS.style.display = 'block';
-        return;
-      }
-      NO_RESULTS.style.display = 'none';
-      filtrados.forEach(l => CONTAINER.appendChild(criarCard(l)));
-    }
+    <!-- Adicione os outros livros aqui da mesma forma -->
+  </div>
+</main>
 
-    async function carregarLivros() {
-      try {
-        const res = await fetch(JSON_URL, { cache: 'no-store' });
-        if (!res.ok) throw new Error('Falha ao carregar books.json');
-        const todos = await res.json();
-        const arr = Array.isArray(todos) ? todos : Object.values(todos).flat();
-        livrosDaCategoria = arr.filter(l => (l.categoria || '').toLowerCase() === CATEGORY);
-        renderizar();
-      } catch (e) {
-        console.error(e);
-        NO_RESULTS.textContent = 'Erro ao carregar os livros.';
-        NO_RESULTS.style.display = 'block';
-      }
-    }
 
-    CONTAINER.addEventListener('click', (e) => {
-      const card = e.target.closest('.card');
-      if (!card) return;
-      e.stopPropagation();
-      card.classList.toggle('flipped');
-    });
+  <!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>
+      Biblioteca inspirada no 
+      <a href="https://www.gutenberg.org/" target="_blank" rel="noopener">
+        Projeto Gutenberg
+      </a> 
+      e na 
+      <a href="https://bibliotecamundial.com.br/" target="_blank" rel="noopener">
+        Biblioteca Mundial
+      </a>.
+    </p>
+    <small>
+      Desenvolvido por Renato de Souza, Thalia Vieira, Leonardo Cruz Ribeiro, 
+      Lucas Trecziak e Paulo Dabwya.
+    </small>
+  </div>
+</footer>
 
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.card.flipped').forEach(c => c.classList.remove('flipped'));
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.card.flipped').forEach(c => c.classList.remove('flipped'));
-      }
-    });
 
-    if (SEARCH_INPUT) {
-      const params = new URLSearchParams(location.search);
-      termoBusca = (params.get('pesquisa') || '').trim();
-      if (termoBusca) SEARCH_INPUT.value = termoBusca;
-
-      SEARCH_INPUT.addEventListener('input', () => {
-        termoBusca = SEARCH_INPUT.value.trim();
-        renderizar();
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', carregarLivros);
-  </script>
-
+<script>
+  // Define o zoom da página em 75%
+  document.body.style.zoom = "75%";
+</script>
+  
 </body>
 </html>

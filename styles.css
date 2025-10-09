@@ -9,7 +9,9 @@
 html, body {
     height: 100%;
 }
-
+.mobile-categorias {
+    display: none;
+}
 /* ===============================
    LAYOUT GERAL
    =============================== */
@@ -20,6 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    zoom: 75%; /* Aplica zoom 75% */
 }
 
 /* ===============================
@@ -33,6 +36,21 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.nav-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
 }
 
 .nav-actions {
@@ -78,6 +96,21 @@ body {
     background: #007BFF;
     color: white;
     font-weight: 600;
+}
+
+/* ===============================
+   MOBILE CATEGORIAS
+   =============================== */
+.mobile-categorias a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 4px 0;
+}
+
+.mobile-categorias a.active {
+    color: #007BFF;
 }
 
 /* ===============================
@@ -292,11 +325,11 @@ body {
   border-top: 1px solid rgba(255,255,255,0.1);
   z-index: 100;
 }
+
 /* Evita que o conteúdo fique escondido atrás do footer */
 body {
-  padding-bottom: 60px; /* ajuste ao height real do footer */
+  padding-bottom: 60px;
 }
-
 
 .footer-content {
     max-width: 800px;
@@ -315,44 +348,76 @@ body {
    MOBILE STYLES
    =============================== */
 @media (max-width: 720px) {
+    .nav-toggle { display: block; }
+    
+    .nav-actions {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .nav-actions.active { display: flex; }
+
+    .mobile-categorias {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
     .container { 
         flex-direction: column; 
         padding: 12px; 
     }
+
     .sidebar { 
         display: none; 
     }
+
     .content { 
         width: 100%; 
         padding: 12px; 
     }
+
     .card { 
         width: 200px; 
         min-height: 300px; 
     }
+
     .card .back .resumo { 
         display: none; 
     }
+
     .cards-grid { 
         grid-template-columns: 1fr; 
         justify-items: center; 
         gap: 12px; 
     }
+
     .navbar { 
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 10px; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
+
     .search-form { 
         width: 100%; 
         flex-wrap: wrap; 
         gap: 4px; 
     }
+
     .search-form input[type="text"] { 
         width: 100%; 
         min-width: unset; 
     }
+
     .search-form button { 
         width: auto; 
     }
+}
+@media (max-width: 720px) {
+  footer p {
+    display: none; /* desaparece totalmente */
+    width: 10px;
+}
 }

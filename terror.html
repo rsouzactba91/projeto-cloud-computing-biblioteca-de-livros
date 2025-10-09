@@ -6,21 +6,35 @@
   <title>Biblioteca — Terror</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="script.js" defer></script>
+  <script src="normalize.js" defer></script>
   <meta name="description" content="Livros da categoria Terror" />
 </head>
 <body>
 
-  <!-- Navbar simples -->
-  <nav class="navbar">
-    <div>📚 Biblioteca — Terror</div>
-    <div class="nav-actions">
-      <form method="get" class="search-form" action="">
-        <input type="text" name="pesquisa" placeholder="Pesquisar na categoria Terror..." aria-label="Pesquisar livros de Terror" />
-        <button type="submit" aria-label="Buscar">🔍</button>
-      </form>
-      <a href="index.html" class="logout">Voltar</a>
+ <nav class="navbar">
+  <div class="nav-brand">📚 Biblioteca</div>
+
+  <!-- Botão hamburger para mobile -->
+  <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+
+  <div class="nav-actions">
+    <form class="search-form">
+      <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar livros">
+      <button type="submit" aria-label="Buscar">🔍</button>
+    </form>
+    <a href="index.html" class="logout">Voltar</a>
+
+    <!-- Menu de categorias -->
+    <div class="mobile-categorias">
+      <a href="suspense.html">Suspense</a>
+      <a href="terror.html" class="active">Terror</a>
+      <a href="romance.html">Romance</a>
+      <a href="religiosidade.html">Religiosidade</a>
     </div>
-  </nav>
+  </div>
+</nav>
+
+
 
   <div class="container">
     <!-- Sidebar opcional (pode ocultar no mobile pelo CSS) -->
@@ -147,6 +161,10 @@
 </footer>
 
 
+<script>
+  // Define o zoom da página em 75%
+  document.body.style.zoom = "75%";
+</script>
 
   
 </body>

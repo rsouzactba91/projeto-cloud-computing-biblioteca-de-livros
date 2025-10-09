@@ -1,133 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca - Livros</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Biblioteca — Terror</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+  <script src="normalize.js" defer></script>
+  <meta name="description" content="Livros da categoria Terror" />
 </head>
 <body>
 
-<!-- Navbar -->
 <nav class="navbar">
-    <div>📚 Biblioteca</div>
-    <div class="nav-actions">
-        <!-- Mobile categorias (oculto no desktop via CSS) -->
-        <div class="mobile-categorias">
-            <a href="#suspense" class="active">Suspense</a>
-            <a href="#terror">Terror</a>
-            <a href="#romance">Romance</a>
-            <a href="#religiosidade">Religiosidade</a>
-        </div>
-        <form method="get" class="search-form" action="">
-            <input type="text" name="pesquisa" placeholder="Pesquisar livros..." aria-label="Pesquisar livros">
-            <button type="submit" aria-label="Buscar">🔍</button>
-        </form>
-        <!-- Botão de logout (exemplo; ajuste o href conforme necessário) -->
-        <a href="logout.php" class="logout">Sair</a>
+  <div class="nav-brand">📚 Biblioteca</div>
+
+  <!-- Botão hamburger para mobile -->
+  <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+
+  <div class="nav-actions">
+    <form class="search-form">
+      <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar livros">
+      <button type="submit" aria-label="Buscar">🔍</button>
+    </form>
+    <a href="index.html" class="active">Início</a>
+
+    <!-- Menu de categorias -->
+    <div class="mobile-categorias">
+      <a href="suspense.html">Suspense</a>
+      <a href="terror.html">Terror</a>
+      <a href="romance.html">Romance</a>
+      <a href="religiosidade.html">Religiosidade</a>
     </div>
+  </div>
 </nav>
 
-<div class="container">
 
-    <!-- Sidebar de categorias -->
+  <div class="container">
+    <!-- Sidebar opcional (pode ocultar no mobile pelo CSS) -->
     <aside class="sidebar">
-        <h3>Categorias</h3>
-        <ul>
-            <li><a href="#suspense">Suspense</a></li>
-            <li><a href="#terror">Terror</a></li>
-            <li><a href="#romance">Romance</a></li>
-            <li><a href="#religiosidade">Religiosidade</a></li>
-        </ul>
+      <h3>Categorias</h3>
+      <ul>
+        <li><a href="suspense.html">Suspense</a></li>
+        <li><a href="terror.html" class="active">Terror</a></li>
+        <li><a href="romance.html">Romance</a></li>
+        <li><a href="religiosidade.html">Religiosidade</a></li>
+      </ul>
     </aside>
 
-    <!-- Conteúdo principal -->
     <main class="content">
-        <h2>Todos os livros</h2>
+      <h2>Home</h2>
+      <div class="cards-grid">
 
-        <div class="cards-grid">
-            <!-- Card exemplo 1 -->
-            <section class="card" tabindex="0" role="button" aria-label="Ver detalhes de Sherlock Holmes">
-                <div class="face front">
-                    <img src="uploads/capas/suspense/sherlock_holmes.jpg" alt="Capa do livro Sherlock Holmes de Arthur Conan Doyle">
-                    <h3>Sherlock Holmes</h3>
-                    <p class="autor">Arthur Conan Doyle</p>
-                    <p class="hint">Clássico de mistério e detetive</p>
-                </div>
-                <div class="face back">
-                    <p class="resumo">Primeira aventura de Sherlock Holmes, o famoso detetive consultor, e seu companheiro Dr. Watson, em uma trama cheia de mistérios e deduções brilhantes.</p>
-                    <a href="uploads/livros/suspense/sherlock_holmes.epub" target="_blank" class="btn-add">Abrir Livro 📖</a>
-                </div>
-            </section>
+        <h2 style="
+    font-family: 'Century Gothic', sans-serif; 
+    text-align: center; 
+    color: #fff; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 8px;
+    display: inline-block;
+">
+  📖 Para ler os livros, baixe o 
+  <a href="https://www.adobe.com/solutions/ebook/digital-editions.html" 
+     target="_blank" 
+     style="color: #FFD700; text-decoration: underline;">
+    Adobe Digital Editions
+  </a>
+  . Selecione uma categoria e um livro para leitura.
+</h2>
 
-            <!-- Card exemplo 2 -->
-            <section class="card" tabindex="0" role="button" aria-label="Ver detalhes de Dracula">
-                <div class="face front">
-                    <img src="uploads/capas/terror/dracula.jpg" alt="Capa do livro Dracula de Bram Stoker">
-                    <h3>Dracula</h3>
-                    <p class="autor">Bram Stoker</p>
-                    <p class="hint">Romance gótico de terror</p>
-                </div>
-                <div class="face back">
-                    <p class="resumo">Romance gótico sobre o vampiro Conde Drácula, que viaja da Transilvânia para a Inglaterra em busca de sangue fresco, enfrentando caçadores como o Professor Van Helsing.</p>
-                    <a href="uploads/livros/terror/dracula.epub" target="_blank" class="btn-add">Abrir Livro 📖</a>
-                </div>
-            </section>
 
-            <!-- Adicione mais cards seguindo o mesmo padrão -->
-            <!-- Exemplo de card adicional (comente ou remova se não precisar) -->
-            <!--
-            <section class="card" tabindex="0" role="button" aria-label="Ver detalhes de Orgulho e Preconceito">
-                <div class="face front">
-                    <img src="uploads/capas/romance/orgulho_preconceito.jpg" alt="Capa do livro Orgulho e Preconceito de Jane Austen">
-                    <h3>Orgulho e Preconceito</h3>
-                    <p class="autor">Jane Austen</p>
-                    <p class="hint">Romance clássico inglês</p>
-                </div>
-                <div class="face back">
-                    <p class="resumo">Elizabeth Bennet e Mr. Darcy navegam por amor, mal-entendidos e convenções sociais na Inglaterra do século XIX.</p>
-                    <a href="uploads/livros/romance/orgulho_preconceito.epub" target="_blank" class="btn-add">Abrir Livro 📖</a>
-                </div>
-            </section>
-            -->
-        </div>
-
-        <!-- Mensagem de "sem resultados" (exemplo; use via JS/PHP para mostrar condicionalmente) -->
-        <div class="no-results" style="display: none;">Nenhum livro encontrado. Tente outra pesquisa!</div>
-    </main>
-
-</div>
-
-<!-- Footer -->
+  <!-- Footer -->
 <footer class="footer">
-    <div class="footer-content">
-        <p>Biblioteca inspirada no <a href="https://www.gutenberg.org/" target="_blank" rel="noopener">Projeto Gutenberg</a> e 
-           <a href="https://bibliotecamundial.com.br" target="_blank" rel="noopener">Biblioteca Mundial</a>.</p>
-        <p>Desenvolvido por Renato de Souza, Thalia Vieira, Leonardo Cruz Ribeiro, Lucas Trecziak e Paulo Dabwya.</p>
-        <div class="socials">
-            <!-- Adicione links reais conforme necessário -->
-            <a href="https://github.com/seuusuario" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://twitter.com/seuusuario" target="_blank" rel="noopener">Twitter</a>
-            <a href="mailto:contato@exemplo.com">Contato</a>
-        </div>
-    </div>
+  <div class="footer-content">
+    <p>
+      Biblioteca inspirada no 
+      <a href="https://www.gutenberg.org/" target="_blank" rel="noopener">
+        Projeto Gutenberg
+      </a> 
+      e na 
+      <a href="https://bibliotecamundial.com.br/" target="_blank" rel="noopener">
+        Biblioteca Mundial
+      </a>.
+    </p>
+    <small>
+      Desenvolvido por Renato de Souza, Thalia Vieira, Leonardo Cruz Ribeiro, 
+      Lucas Trecziak e Paulo Dabwya.
+    </small>
+  </div>
 </footer>
 
-<!-- Script opcional para flip em clique (melhora acessibilidade em mobile/touch) -->
 <script>
-    document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-        });
-        // Fechar flip ao clicar fora (opcional)
-        document.addEventListener('click', (e) => {
-            if (!card.contains(e.target)) {
-                card.classList.remove('flipped');
-            }
-        });
-    });
+  // Define o zoom da página em 75%
+  document.body.style.zoom = "75%";
 </script>
 
+  
 </body>
 </html>
